@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ミリキャド プライバシーポリシー</title>
+<style>
+  :root {
+    --paper: #f2efea;
+    --panel: #fffdf9;
+    --ink: #1c2a42;
+    --ink-soft: #5c6672;
+    --line: rgba(28, 42, 66, 0.12);
+    --accent: #1f6feb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0 20px 96px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    line-height: 1.85;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  header { padding: 72px 0 32px; border-bottom: 1px solid var(--line); }
+  h1 { font-size: 1.75rem; margin: 0 0 8px; letter-spacing: 0.01em; }
+  .lede { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+  h2 { font-size: 1.1rem; margin: 44px 0 10px; }
+  p, li { font-size: 1rem; }
+  ul { padding-left: 1.25em; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 28px 0 0;
+  }
+  .card p:first-child { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .short { font-size: 1.05rem; font-weight: 600; }
+  /* リンクは指で押します。文字の高さのままだと、iPhoneでは狙いにくい。
+     広げるのは当たり判定だけ——inline-block と line-height で伸ばすと、
+     文の途中にあるリンク（サポートの「プライバシーポリシーをご覧ください」）
+     でその行だけ行送りが飛びます。インライン要素の上下パディングは
+     見た目の行送りを変えずに、押せる範囲だけを広げます。 */
+  a { color: var(--accent); padding: 12px 2px; }
+  footer {
+    margin-top: 64px; padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft); font-size: 0.85rem;
+  }
+  .en { color: var(--ink-soft); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>プライバシーポリシー</h1>
+    <p class="lede">ミリキャド（PatternCAD）／ 最終更新 2026年9月4日</p>
+  </header>
+
+  <div class="card">
+    <p class="short">このアプリは、あなたの情報を何ひとつ集めません。通信もしません。</p>
+    <p>作ったモデルは、あなたのiPhoneの中だけにあります。開発者を含め、誰も見られません。</p>
+  </div>
+
+  <h2>集めない情報</h2>
+  <p>ミリキャドは、次のいずれも収集・送信・保存しません。</p>
+  <ul>
+    <li>氏名、メールアドレス、電話番号などの連絡先</li>
+    <li>アカウント情報（そもそもアカウント登録の仕組みがありません）</li>
+    <li>位置情報、連絡先、写真、カメラ、マイク</li>
+    <li>広告識別子（IDFA）や、それに類する識別子</li>
+    <li>利用状況の解析データ、クラッシュログ</li>
+  </ul>
+
+  <h2>端末の中に保存するもの</h2>
+  <p>次のデータは、アプリのサンドボックス内にだけ保存されます。外へは出ません。</p>
+  <ul>
+    <li>あなたが作ったモデル（形状の履歴と寸法を記録したJSONファイル）</li>
+    <li>最後に開いたモデルの識別子</li>
+    <li>モデル一覧に日付を表示するために読む、ファイルの更新日時</li>
+  </ul>
+  <p>アプリを削除すると、これらは端末から消えます。バックアップを取っていない限り、元には戻せません。</p>
+
+  <h2>通信</h2>
+  <p>
+    ミリキャドはインターネットに接続しません。サーバーも、クラウド同期も、
+    外部SDKもありません。機内モードのままでも、すべての機能が動きます。
+  </p>
+
+  <h2>書き出したファイル</h2>
+  <p>
+    STL / 3MF を書き出すと、iOSの共有シートが開きます。そこから先——どのアプリへ渡すか、
+    どこへ保存するか——はあなたの操作です。渡した先のアプリの扱いについては、
+    そのアプリのプライバシーポリシーが適用されます。
+  </p>
+
+  <h2>トラッキング</h2>
+  <p>
+    アプリ間トラッキングは行いません。したがって、トラッキングの許可を求めるダイアログも出ません。
+  </p>
+
+  <h2>第三者への提供</h2>
+  <p>集めていないので、提供するものがありません。</p>
+
+  <h2>子どもの利用</h2>
+  <p>
+    年齢を問わず安全に使えます。個人情報を集めないため、13歳未満の子どもから
+    情報を収集することもありません。
+  </p>
+
+  <h2>ポリシーの変更</h2>
+  <p>
+    内容を変更した場合は、このページを更新し、上部の最終更新日を書き換えます。
+    収集するデータが増えることになった場合は、アプリの更新より前にここへ書きます。
+  </p>
+
+  <h2>お問い合わせ</h2>
+  <p>
+    <!-- ▼ 公開するメールアドレスに差し替えてください ▼ -->
+    <a href="mailto:appcontact12y@gmail.com">appcontact12y@gmail.com</a>
+  </p>
+
+  <footer>
+    <p class="en">
+      <strong>English summary.</strong> MilliCAD (PatternCAD) collects nothing.
+      It has no accounts, no network access, no analytics and no tracking.
+      Everything you make stays in the app's sandbox on your own device.
+      Contact: appcontact12y@gmail.com
+    </p>
+    <p><a href="./support.html">サポートページへ</a></p>
+    <p>© 2026 syesyedo</p>
+  </footer>
+</main>
+</body>
+</html>

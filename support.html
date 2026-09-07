@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ミリキャド サポート</title>
+<style>
+  :root {
+    --paper: #f2efea;
+    --panel: #fffdf9;
+    --ink: #1c2a42;
+    --ink-soft: #5c6672;
+    --line: rgba(28, 42, 66, 0.12);
+    --accent: #1f6feb;
+    --cut: #c24014;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0 20px 96px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    line-height: 1.85;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  header { padding: 72px 0 32px; border-bottom: 1px solid var(--line); }
+  h1 { font-size: 1.75rem; margin: 0 0 8px; }
+  .lede { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+  h2 { font-size: 1.15rem; margin: 48px 0 6px; }
+  h3 { font-size: 1rem; margin: 26px 0 4px; }
+  p, li { font-size: 1rem; }
+  ol, ul { padding-left: 1.3em; }
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0 0; }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 0 0 0 46px;
+    margin: 0 0 16px;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 2px;
+    width: 30px; height: 30px; border-radius: 15px;
+    background: var(--accent); color: #fff;
+    font-size: 0.9rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 24px 0 0;
+  }
+  .card > :first-child { margin-top: 0; }
+  .card > :last-child { margin-bottom: 0; }
+  .faq { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 18px; }
+  .faq:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+  .q { font-weight: 700; margin: 0 0 4px; }
+  .a { margin: 0; color: var(--ink-soft); }
+  /* リンクは指で押します。文字の高さのままだと、iPhoneでは狙いにくい。
+     広げるのは当たり判定だけ——inline-block と line-height で伸ばすと、
+     文の途中にあるリンク（サポートの「プライバシーポリシーをご覧ください」）
+     でその行だけ行送りが飛びます。インライン要素の上下パディングは
+     見た目の行送りを変えずに、押せる範囲だけを広げます。 */
+  a { color: var(--accent); padding: 12px 2px; }
+  code {
+    background: rgba(28, 42, 66, 0.07);
+    border-radius: 5px; padding: 1px 6px;
+    font-size: 0.92em;
+  }
+  footer {
+    margin-top: 64px; padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft); font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>ミリキャド サポート</h1>
+    <p class="lede">iPhoneで輪郭を描いて立体を作る、3Dプリンタのためのアプリです。</p>
+  </header>
+
+  <h2>はじめの4手</h2>
+  <ol class="steps">
+    <li><strong>置く</strong> — 下のパネルにある四角か丸のアイコンを1回押します。押した形がその場に出ます。指でドラッグして描くこともできます。</li>
+    <li><strong>決める</strong> — 「よこ」の数字をタップするとテンキーが出ます。ノギスで測った数字をそのまま打って「完了」。数字を横にドラッグしても増減します。</li>
+    <li><strong>押し出す</strong> — 右下の「押し出す」を押し、長さを決めて「立体にする」。</li>
+    <li><strong>続ける</strong> — 立体の面をタップして「ここに描く」。同じ手順で、足したり削ったりを重ねます。</li>
+  </ol>
+
+  <h2>よくある質問</h2>
+
+  <div class="card">
+    <div class="faq">
+      <p class="q">保存はどうすればいいですか？</p>
+      <p class="a">保存の操作はありません。立体を作ると自動で保存され、右上のフォルダ（保存したモデル）に並びます。アプリを閉じても、次に開いたときは最後に開いていたモデルが出ます。</p>
+    </div>
+    <div class="faq">
+      <p class="q">新しいモデルを作る・別のモデルに切り替えるには？</p>
+      <p class="a">右上のフォルダを開くと、保存したモデルの一覧が出ます。左上の「＋」で新しいモデルを作れます。行をタップすると、そのモデルに切り替わります。</p>
+    </div>
+    <div class="faq">
+      <p class="q">モデルの名前を変えるには？</p>
+      <p class="a">一覧で行の「…」を押すか、行を長押しすると「名前を変更」が出ます。同じところに「コピー」と「削除」もあります。</p>
+    </div>
+    <div class="faq">
+      <p class="q">操作を間違えました</p>
+      <p class="a">画面いちばん下の左にある戻る矢印で取り消せます。直前の1手だけでなく、続けて戻せます。右隣の矢印でやり直せます。ただし別のモデルを開いたり新しく作ったりすると、取り消しの履歴は消えます。</p>
+    </div>
+    <div class="faq">
+      <p class="q">作ったデータをスライサへ渡すには？</p>
+      <p class="a">右下の「書き出す」から 3MF か STL を選ぶと、iOSの共有シートが開きます。そこからスライサアプリへ直接渡すか、「ファイル」に保存してPCへ移してください。単位はmm、いちばん下の面がベッドに接した向きで出ます。</p>
+    </div>
+    <div class="faq">
+      <p class="q">3MFとSTL、どちらを選べばいい？</p>
+      <p class="a">スライサが対応しているなら3MFです。ファイルの中に単位が書かれているので、mmとinchの取り違えが起きません。STLは単位を持たないので、読み込み側の設定に依存します。</p>
+    </div>
+    <div class="faq">
+      <p class="q">寸法をあとから直せますか？</p>
+      <p class="a">直せます。直したい形の面をタップして「作った形を直す」を開くと、よこ・たて・置き場所・かたむき・押し出し距離・向き・足す／削る・深さ／貫通が、作ったときの値で戻ってきます。土台を変えれば、その後の穴や追加形状も組み直ります。</p>
+    </div>
+    <div class="faq">
+      <p class="q">角のチップが「＜ 2 mm」になります</p>
+      <p class="a">指定した2mmが入りきらない稜線があるという意味です。壁が薄い場所では、平らな面が残る値まで自動で詰めています。数字を小さくすれば「＜」は消えます。</p>
+    </div>
+    <div class="faq">
+      <p class="q">円柱の横の面がタップできません</p>
+      <p class="a">曲がった面の上には、平らな輪郭を置けません。選べてから断るより最初から選ばせないほうが読めるので、曲面は面として出していません。上下の平らな面は選べます。</p>
+    </div>
+    <div class="faq">
+      <p class="q">「面からはみ出しています」と出ます</p>
+      <p class="a">描いた輪郭が、いま選んでいる面の外へ出ています。足す場合は宙に浮いた部分ができるという警告です。狙ってそうしている（穴の中に部品を立てるなど）のでなければ、大きさか置き場所を直してください。</p>
+    </div>
+    <div class="faq">
+      <p class="q">部品が「2 個」と出ました</p>
+      <p class="a">貫通で削ったことで、立体が離れた2つの部品に分かれています。3MFで書き出せばスライサでも2個のまま開きます（STLは形式上ひとつのメッシュになるので、スライサ側で分割してください）。蝶番や可動部を作ったときは正しい状態です。</p>
+    </div>
+    <div class="faq">
+      <p class="q">iPadやMacでも使えますか？</p>
+      <p class="a">1.0はiPhone専用です。縦画面のみ、iOS 18以上が必要です。</p>
+    </div>
+    <div class="faq">
+      <p class="q">作ったモデルはどこに保存されますか？</p>
+      <p class="a">この端末の中だけです。アカウントもクラウド同期もありません。アプリを削除すると消えるので、残したい形は3MFやSTLに書き出しておいてください。</p>
+    </div>
+  </div>
+
+  <h2>いまのバージョンでできないこと</h2>
+  <ul>
+    <li>回転体（ろくろで挽いたような形）は作れません。作れるのは輪郭を押し出した形だけです。</li>
+    <li>曲がった壁の上には描けません。</li>
+    <li>履歴の途中にある押し出しを、単独で外す操作はまだありません。</li>
+    <li>実際の機種・材料で刷れるかどうかの判定はしません。</li>
+  </ul>
+
+  <h2>不具合の報告・要望</h2>
+  <p>
+    次の3つを書いて送ってもらえると、こちらで同じ形を組み直せます。
+  </p>
+  <ul>
+    <li>iPhoneの機種とiOSのバージョン</li>
+    <li>どんな形を、どの順で作ったか（例: 120×80を25mm押し出して、上の面に112×72を21mm削った）</li>
+    <li>期待した結果と、実際に起きたこと</li>
+  </ul>
+  <p>
+    <!-- ▼ 公開するメールアドレスに差し替えてください ▼ -->
+    <a href="mailto:appcontact12y@gmail.com">appcontact12y@gmail.com</a>
+  </p>
+
+  <h2>プライバシー</h2>
+  <p>
+    情報は何も集めません。通信もしません。詳しくは
+    <a href="privacy.html">プライバシーポリシー</a>をご覧ください。
+  </p>
+
+  <h2>同梱しているソフトウェア</h2>
+  <p>
+    立体の計算に Manifold（Apache-2.0）、Manifold-Swift（MIT）、oneTBB（Apache-2.0）、
+    Clipper2（Boost Software License 1.0）を使っています。ライセンス本文はアプリに
+    同梱していて、保存したモデルの一覧の下隅にある <code>ⓘ</code> から読めます。
+  </p>
+
+  <footer>
+    <p><a href="./privacy.html">プライバシーポリシー</a></p>
+    <p>ミリキャド 1.0 ／ © 2026 syesyedo</p>
+  </footer>
+</main>
+</body>
+</html>
