@@ -58,7 +58,7 @@
 <main>
   <header>
     <h1>プライバシーポリシー</h1>
-    <p class="lede">ミリキャド（PatternCAD）／ 最終更新 2026年9月25日</p>
+    <p class="lede">ミリキャド（PatternCAD）／ 最終更新 2026年10月7日</p>
   </header>
 
   <div class="card">
@@ -82,10 +82,13 @@
     <li>あなたが作ったモデル（形状の履歴と寸法を記録したJSONファイル）</li>
     <li>保存したモデルの完成形の小さな画像（一覧に表示するため）</li>
     <li>押し出す前の描きかけの輪郭と押し出しの設定（次に開いたとき続きから始めるため）</li>
-    <li>AIに相談したときの元のモデルの控え（最大16件。返ってきた答えと比べるため）</li>
-    <li>最後に開いたモデルの識別子と、縦横比を固定するかどうかの設定</li>
+    <li>最後に開いたモデルの識別子（次に開いたとき同じモデルを出すため）</li>
     <li>モデル一覧に日付を表示するために読む、ファイルの更新日時</li>
   </ul>
+  <p>
+    1.1.0までの版は、AIに相談したときの元のモデルの控えと、縦横比を固定するかどうかの設定も
+    保存していました。1.2.0では使わないので、更新後に最初に開いたときに消します。
+  </p>
   <p>アプリを削除すると、これらは端末から消えます。バックアップを取っていない限り、元には戻せません。</p>
 
   <h2>通信</h2>
@@ -96,15 +99,15 @@
 
   <h2>書き出したファイル</h2>
   <p>
-    STL / 3MF を書き出すと、iOSの共有シートが開きます。そこから先——どのアプリへ渡すか、
-    どこへ保存するか——はあなたの操作です。渡した先のアプリの扱いについては、
-    そのアプリのプライバシーポリシーが適用されます。
+    3MFを書き出すと、保存先を選ぶ画面が開きます。どこへ保存するか、保存したファイルを
+    どのアプリで開くかは、あなたの操作です。保存した先のサービス（iCloud Driveなど）や
+    開いたアプリの扱いについては、それぞれのプライバシーポリシーが適用されます。
   </p>
 
   <h2>AIへの相談</h2>
   <p>
     「AIと形をやりとり」では、モデルの形（寸法と作った手順）と名前を含む文章を用意します。
-    その文章をコピーするか、共有シートでどのアプリへ渡すかは、あなたの操作です。
+    その文章をコピーして、どのアプリへ貼り付けるかは、あなたの操作です。
     ミリキャド自身がAIやサーバーへ送ることはありません。渡した先のアプリやサービスでの扱いについては、
     そのプライバシーポリシーが適用されます。
   </p>
@@ -140,7 +143,7 @@
       <strong>English summary.</strong> MilliCAD (PatternCAD) collects nothing.
       It has no accounts, no network access, no analytics and no tracking.
       Everything you make stays in the app's sandbox on your own device.
-      When you consult an AI, you copy or share the text yourself; the app sends nothing.
+      When you consult an AI, you copy and paste the text yourself; the app sends nothing.
       Contact: appcontact12y@gmail.com
     </p>
     <p><a href="./support.html">サポートページへ</a></p>
