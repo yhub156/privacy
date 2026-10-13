@@ -3,212 +3,221 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ミリキャド1.2.1の使い方。自動保存、3MF書き出し、形の編集と削除、AIとのやりとり、不具合の報告をご案内します。">
 <title>ミリキャド サポート</title>
 <style>
-  :root {
-    --paper: #f2efea;
-    --panel: #fffdf9;
-    --ink: #1c2a42;
-    --ink-soft: #5c6672;
-    --line: rgba(28, 42, 66, 0.12);
-    --accent: #1f6feb;
-    --cut: #c24014;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 0 20px 96px;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-    line-height: 1.85;
-    -webkit-text-size-adjust: 100%;
-  }
-  main { max-width: 44rem; margin: 0 auto; }
-  header { padding: 72px 0 32px; border-bottom: 1px solid var(--line); }
-  h1 { font-size: 1.75rem; margin: 0 0 8px; }
-  .lede { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
-  h2 { font-size: 1.15rem; margin: 48px 0 6px; }
-  h3 { font-size: 1rem; margin: 26px 0 4px; }
-  p, li { font-size: 1rem; }
-  ol, ul { padding-left: 1.3em; }
-  .steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0 0; }
-  .steps li {
-    counter-increment: step;
-    position: relative;
-    padding: 0 0 0 46px;
-    margin: 0 0 16px;
-  }
-  .steps li::before {
-    content: counter(step);
-    position: absolute; left: 0; top: 2px;
-    width: 30px; height: 30px; border-radius: 15px;
-    background: var(--accent); color: #fff;
-    font-size: 0.9rem; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 18px 22px;
-    margin: 24px 0 0;
-  }
-  .card > :first-child { margin-top: 0; }
-  .card > :last-child { margin-bottom: 0; }
-  .faq { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 18px; }
-  .faq:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
-  .q { font-weight: 700; margin: 0 0 4px; }
-  .a { margin: 0; color: var(--ink-soft); }
-  /* リンクは指で押します。文字の高さのままだと、iPhoneでは狙いにくい。
-     広げるのは当たり判定だけ——inline-block と line-height で伸ばすと、
-     文の途中にあるリンク（サポートの「プライバシーポリシーをご覧ください」）
-     でその行だけ行送りが飛びます。インライン要素の上下パディングは
-     見た目の行送りを変えずに、押せる範囲だけを広げます。 */
-  a { color: var(--accent); padding: 12px 2px; }
-  code {
-    background: rgba(28, 42, 66, 0.07);
-    border-radius: 5px; padding: 1px 6px;
-    font-size: 0.92em;
-  }
-  footer {
-    margin-top: 64px; padding-top: 24px;
-    border-top: 1px solid var(--line);
-    color: var(--ink-soft); font-size: 0.85rem;
-  }
+  :root { --paper:#f2efea; --panel:#fffdf9; --ink:#1c2a42; --muted:#526071; --line:#d6d9dd; --accent:#185fc8; }
+  * { box-sizing:border-box; }
+  html { scroll-padding-top:24px; }
+  body { margin:0; padding:0 20px 64px; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif; line-height:1.85; -webkit-text-size-adjust:100%; overflow-wrap:anywhere; }
+  main { max-width:46rem; margin:0 auto; }
+  header { padding:48px 0 24px; border-bottom:1px solid var(--line); }
+  .brand { margin:0 0 8px; font-size:.9rem; font-weight:700; }
+  h1 { margin:0 0 12px; font-size:clamp(1.6rem,5vw,2rem); line-height:1.5; }
+  h2 { margin:0 0 14px; font-size:1.25rem; line-height:1.6; }
+  h3 { margin:24px 0 8px; font-size:1rem; }
+  p { margin:12px 0; }
+  .lede,.meta { color:var(--muted); }
+  .meta { font-size:.85rem; }
+  .lede { margin:0; }
+  section { margin-top:40px; }
+  a { color:var(--accent); text-underline-offset:.2em; }
+  a:hover { text-decoration-thickness:2px; }
+  a:focus-visible,summary:focus-visible { outline:3px solid var(--accent); outline-offset:4px; border-radius:3px; }
+  nav { display:flex; flex-wrap:wrap; gap:4px 20px; margin-top:20px; }
+  nav a,.button { display:inline-flex; align-items:center; min-height:44px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .card > :first-child { margin-top:0; }
+  .card > :last-child { margin-bottom:0; }
+  .intro { margin-top:24px; }
+  ul,ol { padding-left:1.4em; }
+  li + li { margin-top:8px; }
+  .steps { list-style:none; counter-reset:step; padding:0; margin:0; }
+  .steps.card { padding:20px; }
+  .steps li { counter-increment:step; position:relative; padding-left:44px; margin:0 0 20px; }
+  .steps li:last-child { margin-bottom:0; }
+  .steps li::before { content:counter(step); position:absolute; left:0; top:2px; display:flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; }
+  .steps strong { display:block; }
+  details { border-top:1px solid var(--line); padding:4px 0; }
+  details:last-child { border-bottom:1px solid var(--line); }
+  summary { cursor:pointer; padding:14px 4px; font-weight:650; min-height:48px; }
+  details > :not(summary) { margin-left:4px; margin-right:4px; }
+  details > :last-child { margin-bottom:20px; }
+  .note { color:var(--muted); font-size:.95rem; }
+  .button { padding:10px 16px; border:1px solid var(--line); border-radius:10px; background:var(--panel); font-weight:650; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; }
+  footer nav { margin:0; }
+  @media (max-width:420px) { body { padding-left:16px; padding-right:16px; } header { padding-top:32px; } .card,.steps.card { padding:16px; } }
+  @media print { body { background:white; padding:0; } nav { display:none; } details { break-inside:avoid; } }
 </style>
 </head>
 <body>
-<main>
+<main id="top">
   <header>
-    <h1>ミリキャド サポート</h1>
-    <p class="lede">iPhoneで輪郭を描いて立体を作る、3Dプリンタのためのアプリです。</p>
+    <p class="brand">ミリキャド</p>
+    <h1>サポート</h1>
+    <p class="lede">形を作るところから、3Dプリンタ用のファイルに書き出すまで。</p>
+    <p class="meta">バージョン1.2.1の操作ガイド ／ iPhone・iOS 18以降</p>
+    <nav aria-label="このページの目次">
+      <a href="#start">はじめて使う</a><a href="#save">保存と書き出し</a><a href="#edit">形の編集</a><a href="#trouble">困ったとき</a><a href="#ai">AIとのやりとり</a><a href="#contact">お問い合わせ</a>
+    </nav>
   </header>
 
-  <h2>はじめの4手</h2>
-  <ol class="steps">
-    <li><strong>置く</strong> — 下のパネルにある四角か丸のアイコンを1回押します。押した形がその場に出ます。指でドラッグして描くこともできます。</li>
-    <li><strong>決める</strong> — 「よこ」の数字をタップするとテンキーが出ます。ノギスで測った数字をそのまま打って「完了」。数字を横にドラッグしても増減します。</li>
-    <li><strong>押し出す</strong> — 右下の「押し出す」を押し、長さを決めて「立体にする」。</li>
-    <li><strong>続ける</strong> — 立体の面をタップすると、下のパネルに四角と丸のアイコンが出ます。押すと、その面に小さな形が置かれるので、同じ手順で足す・削る・貫通を重ねます。</li>
-  </ol>
+  <section id="start" aria-labelledby="start-title">
+    <h2 id="start-title">まずは、ひとつの形を作ってみる</h2>
+    <ol class="steps card">
+      <li><strong>四角か丸を置く</strong>下のパネルの四角・丸のアイコンをタップします。指でドラッグして描くこともできます。</li>
+      <li><strong>寸法を入力する</strong>「よこ」などの数字をタップし、テンキーで寸法を入力して「完了」を押します。単位はmmです。丸は「直径」で大きさを決めます。</li>
+      <li><strong>立体にする</strong>右下の「押し出す」で長さを決め、「立体にする」を押します。</li>
+      <li><strong>面に形を足す・穴をあける</strong>立体の平らな面をタップし、四角か丸を置きます。「足す・削る」で「足す」「削る」「貫通」を選んで加工します。</li>
+    </ol>
+    <p class="note">数値は横にドラッグして調整することもできます。寸法の表示名は、選んだ面の向きに合わせて変わります。</p>
+  </section>
 
-  <h2>よくある質問</h2>
+  <section id="save" aria-labelledby="save-title">
+    <h2 id="save-title">保存と書き出し</h2>
+    <details open>
+      <summary>モデルは自動で保存されますか？</summary>
+      <p>はい。立体を作ると自動で保存され、右上のフォルダ「保存したモデル」に並びます。次にアプリを開くと、最後に開いていたモデルが表示されます。描きかけの輪郭や押し出しの設定も、続きから再開できます。</p>
+      <p>保存先はアプリ内です。別の端末への自動同期はありません。アプリを削除すると端末内のモデルも削除されるため、大切な形は3MFファイルにも書き出してください。</p>
+      <p class="note">3MFは印刷用の形状ファイルです。ミリキャドの編集履歴を保存・復元するためのバックアップではありません。</p>
+    </details>
+    <details>
+      <summary>新規作成・名前の変更・複製・削除はどこからできますか？</summary>
+      <p>右上のフォルダを開きます。新規作成は一覧下の「新しいモデル」から、切り替えはモデルの画像か名前のタップで行えます。</p>
+      <p>各モデルの下にある「名前を変更」「複製」「削除」で管理できます。名前は64文字まで入力できます。</p>
+    </details>
+    <details open>
+      <summary>スライサやPCへ渡すには？</summary>
+      <ol>
+        <li>右下の「書き出す」を押し、外寸を確認します。</li>
+        <li>「ファイルに保存」を押し、保存先を選びます。</li>
+        <li>保存した3MFを、お使いのスライサで開きます。PCへ渡す場合は、iCloud Driveなど利用できる保存先を選んでください。</li>
+      </ol>
+      <p>保存が完了すると、書き出し画面にファイル名が表示されます。ファイルにはmmの単位情報が含まれ、モデルのいちばん下がプリントベッドに接する向きで書き出されます。</p>
+      <p class="note">印刷前に、スライサ上でも寸法・向き・材料・サポート材の設定を確認してください。</p>
+    </details>
+    <details>
+      <summary>STL形式が必要な場合は？</summary>
+      <p>書き出し形式は3MFです。STLが必要な場合は、3MFを読み込めるスライサなどで開き、STLとして書き出してください。変換できる形式はお使いのソフトの案内を確認してください。</p>
+    </details>
+  </section>
 
-  <div class="card">
-    <div class="faq">
-      <p class="q">保存はどうすればいいですか？</p>
-      <p class="a">保存の操作はありません。立体を作ると自動で保存され、右上のフォルダ（保存したモデル）に完成形の絵つきで並びます。アプリを閉じても、次に開いたときは最後に開いていたモデルが出ます。押し出す前の描きかけの輪郭や押し出しの設定も、続きから始められます。</p>
-    </div>
-    <div class="faq">
-      <p class="q">新しいモデルを作る・別のモデルに切り替えるには？</p>
-      <p class="a">右上のフォルダを開くと、保存したモデルの一覧が出ます。いちばん下の「新しいモデル」で新しいモデルを作れます。モデルの絵か名前をタップすると、そのモデルに切り替わります。</p>
-    </div>
-    <div class="faq">
-      <p class="q">モデルの名前を変えるには？</p>
-      <p class="a">一覧の各モデルの下に「名前を変更」「複製」「削除」が並んでいます。「名前を変更」を押すと、下から名前の画面が出ます。名前の入力欄をタップして新しい名前を入力し、「保存」を押します。64文字まで使えます。</p>
-    </div>
-    <div class="faq">
-      <p class="q">操作を間違えました</p>
-      <p class="a">画面いちばん下の左にある戻る矢印で取り消せます。直前の1手だけでなく、続けて戻せます。右隣の矢印でやり直せます。新しく追加する描きかけを「やめる」で捨てた場合は、次の取り消し1回で戻ります。「直す」をやめた場合は元のモデルを保ちます。別のモデルを開いて戻っても、アプリを閉じるまでは取り消しを続けられます。</p>
-    </div>
-    <div class="faq">
-      <p class="q">作ったデータをスライサへ渡すには？</p>
-      <p class="a">右下の「書き出す」を押すと、下から書き出しの画面が出て、外寸を確かめられます。「ファイルに保存」を押すと、保存先を選ぶ画面が開きます。「ファイル」のフォルダやiCloud Driveへ保存して、スライサアプリやPCで開いてください。保存できると、書き出しの画面に保存したファイル名が出ます。単位はmm、いちばん下の面がベッドに接した向きで出ます。3MFはファイルの中に単位が書かれているので、mmとinchの取り違えが起きません。</p>
-    </div>
-    <div class="faq">
-      <p class="q">STLで書き出せなくなりました</p>
-      <p class="a">1.2.0で書き出しを3MFにまとめ、STLと共有シートをやめました。PrusaSlicerをはじめ、多くのスライサは3MFを読み込めます。STLが必要なときは、スライサで3MFを開いてからSTLとして書き出してください。</p>
-    </div>
-    <div class="faq">
-      <p class="q">作った形をあとから直せますか？</p>
-      <p class="a">モデル画面の「直す」で対象を選ぶと、いつもの作図画面で輪郭・頂点・曲線・寸法・位置・かたむきを直せます。「押し出す」で長さや足す／削る／貫通を確認し、「変更を反映」で保存します。後で作った加工を保って変更でき、取り消し1回で変更前に戻せます。「やめる」や作れない変更では元のモデルを保ちます。</p>
-    </div>
-    <div class="faq">
-      <p class="q">縦横比を変えずに大きさを変えたい・真ん中に置きたい</p>
-      <p class="a">輪郭をドラッグすると、面の中央・縁・隣の輪郭に吸い付きます。端からの距離は「左から」「下から」をmmで打っても決められます。縦横比を保つ鎖のボタンと位置合わせのボタンは、1.2.0でなくしました。よこ・おくはそれぞれの数字で決めてください（丸は直径の1つの数字です）。</p>
-    </div>
-    <div class="faq">
-      <p class="q">角を落とす「入／切」がなくなりました</p>
-      <p class="a">1.2.0で角を落とす操作をなくしました。前の版で角を落として保存したモデルは、落とした角のまま開いて、そのまま書き出せます。新しく作る形の角は落とせません。</p>
-    </div>
-    <div class="faq">
-      <p class="q">点を消すには？ 辺を曲げるには？</p>
-      <p class="a">描く画面の「頂点」を押すと、輪郭の点と辺を直せます。点をタップすると選ばれ、横に赤い「−」が出ます。それを押すと点が消えます（3点より少なくはできません）。辺の途中の「＋」で点を足せます。辺の外側にある丸をドラッグすると辺が曲がり、丸をタップするとまっすぐに戻ります。終わったら「完了」を押します。</p>
-    </div>
-    <div class="faq">
-      <p class="q">確定ボタンが押せず、上の帯に赤い文字が出ています</p>
-      <p class="a">その向きや深さでは加工が成り立たないという意味です（例: 外側の面で「貫通」の向きを返した、すでにある穴に重ねて削った）。帯の理由を読んで、向き・深さ・置き場所を変えると、理由が消えて確定できます。元の立体は変わりません。</p>
-    </div>
-    <div class="faq">
-      <p class="q">円柱の横の面がタップできません</p>
-      <p class="a">曲がった面の上には、平らな輪郭を置けません。選べてから断るより最初から選ばせないほうが読めるので、曲面は面として出していません。上下の平らな面は選べます。</p>
-    </div>
-    <div class="faq">
-      <p class="q">「面からはみ出しています」と出ます</p>
-      <p class="a">描いた輪郭が、いま選んでいる面の外へ出ています。足す場合は宙に浮いた部分ができるという警告です。狙ってそうしている（穴の中に部品を立てるなど）のでなければ、大きさか置き場所を直してください。</p>
-    </div>
-    <div class="faq">
-      <p class="q">部品が「2 個」と出ました</p>
-      <p class="a">貫通で削ったか、どこにも触れていない形を足したことで、立体が離れた2つの部品に分かれています。3MFで書き出せば、スライサでも2個のまま開きます。蝶番や可動部を作ったときは正しい状態です。</p>
-    </div>
-    <div class="faq">
-      <p class="q">AIに相談するには？</p>
-      <p class="a">右上のきらきらのボタンを押すと「AIと形をやりとり」が開きます。いまのモデルを相談する行や、新しい形を頼む行をタップして文をコピーし、お使いのチャットAIへ貼り付けてください。返ってきた答え（JSON）をコピーし、「回答を貼り付け」の下にあるペーストのボタンで貼ると、保存する前に立体に組み立てて、外寸・部品数と一緒に見せます。「保存して開く」で別のモデルとして保存し、そのまま編集を続けられます。組み立てられないときは修正の案内が出るので、「理由をAIへ返す」で直す依頼の文をコピーして、AIへ貼り付けてください。</p>
-    </div>
-    <div class="faq">
-      <p class="q">AIに相談すると、モデルが外へ送られますか？</p>
-      <p class="a">アプリ自身は何も送りません。文章をコピーして、どのアプリへ貼り付けるかは、あなたの操作です。渡した先のアプリやサービスでの扱いは、そのプライバシーポリシーに従います。</p>
-    </div>
-    <div class="faq">
-      <p class="q">iPadやMacでも使えますか？</p>
-      <p class="a">iPhone専用です。縦画面のみ、iOS 18以上が必要です。</p>
-    </div>
-    <div class="faq">
-      <p class="q">作ったモデルはどこに保存されますか？</p>
-      <p class="a">この端末の中だけです。アカウントもクラウド同期もありません。アプリを削除すると消えるので、残したい形は3MFに書き出しておいてください。</p>
-    </div>
-  </div>
+  <section id="edit" aria-labelledby="edit-title">
+    <h2 id="edit-title">形の編集</h2>
+    <details>
+      <summary>あとから寸法や形を変えるには？</summary>
+      <p>モデル画面の「直す」で対象を選び、輪郭・寸法・位置・傾きを編集します。「押し出す」で長さと加工方法を確認し、「変更を反映」を押します。</p>
+      <p>後から作った加工を保ちながら変更します。変更が成り立たない場合は理由が表示され、元のモデルは保たれます。</p>
+      <p>同じ輪郭を使う複数の加工があるモデルでも、選んだ加工だけを変更します。</p>
+    </details>
+    <details>
+      <summary>操作を取り消すには？</summary>
+      <p>画面下の左向きの矢印で取り消し、隣の矢印でやり直しができます。続けて押すと、複数の操作を戻せます。</p>
+      <p>新しく描いた輪郭を「やめる」で破棄した場合も、取り消しで戻せます。別のモデルに切り替えても、アプリを終了するまでは取り消しの履歴が残ります。</p>
+    </details>
+    <details>
+      <summary>途中の穴や出っ張りだけを消すには？</summary>
+      <p>モデル画面の「直す」を開き、消したい加工の「消す」を押します。そこを元にした形があるときは、一緒に消える形を確認してから消せます。最初の立体には「消す」はありません。</p>
+      <p>「取り消す」で消す前の形へ戻せます。削除の計算中に「取り消す」を押すと、その削除を中止します。</p>
+    </details>
+    <details>
+      <summary>位置をそろえる・端からの距離を決めるには？</summary>
+      <p>輪郭をドラッグすると、面の中央・縁・隣の輪郭に吸い付きます。端からの距離を正確に決めたい場合は、「左から」「下から」にmmで入力してください。</p>
+      <p>四角の縦横の寸法は、それぞれ入力します。縦横比を固定するボタンはありません。</p>
+    </details>
+    <details>
+      <summary>頂点を増やす・消す・辺を曲げるには？</summary>
+      <p>作図画面の「頂点」を押します。点を選んで赤い「−」を押すと削除でき、辺の「＋」で点を追加できます。輪郭は3点以上必要です。消せない点では、理由と次に直すところが表示されます。</p>
+      <p>辺の外側にある丸をドラッグすると辺が曲がり、丸をタップすると直線に戻ります。編集が終わったら「完了」を押します。</p>
+    </details>
+  </section>
 
-  <h2>いまのバージョンでできないこと</h2>
-  <ul>
-    <li>回転体（ろくろで挽いたような形）は作れません。作れるのは輪郭を押し出した形だけです。</li>
-    <li>曲がった壁の上には描けません。</li>
-    <li>加工を外す・コピーする操作はありません。</li>
-    <li>角を丸める・落とす加工はありません。</li>
-    <li>実際の機種・材料で刷れるかどうかの判定はしません。</li>
-  </ul>
+  <section id="trouble" aria-labelledby="trouble-title">
+    <h2 id="trouble-title">困ったとき</h2>
+    <details>
+      <summary>赤い理由が表示されて、確定できません</summary>
+      <p>指定した形・向き・深さでは加工を作れない状態です。画面に出る理由と対処を確認し、押し出す向き、長さ、輪郭の大きさや位置を調整してください。確定するまでは元の立体が保たれます。</p>
+    </details>
+    <details>
+      <summary>「面からはみ出しています」と表示されます</summary>
+      <p>輪郭の一部が、選んでいる面の外に出ています。意図した形でなければ、輪郭を小さくするか位置を動かしてください。</p>
+    </details>
+    <details>
+      <summary>円柱の側面に形を置けません</summary>
+      <p>輪郭を置けるのは平らな面です。円柱の上下の面は選べますが、曲がった側面には置けません。</p>
+    </details>
+    <details>
+      <summary>保存したモデルを開けません</summary>
+      <p>保存一覧にあるそのモデルの「理由」を押すと、開けない原因を確認できます。新しい版で保存されたモデルは、対応した版へ更新してから開いてください。ファイルが壊れている場合は、理由を確認してからお問い合わせください。</p>
+    </details>
+    <details>
+      <summary>部品数が「2個」以上になりました</summary>
+      <p>立体が複数の離れた部品になっています。貫通で分割した場合や、離れた場所に形を足した場合などに起きます。意図した構造か確認してください。3MFにも複数の部品として書き出されます。</p>
+    </details>
+    <details>
+      <summary>1.1.0までの操作が見つかりません</summary>
+      <p>1.2.0では、STL書き出し・共有シート・縦横比の固定・位置合わせボタン・角を落とす操作を終了しました。</p>
+      <p>以前の版で角を落として保存したモデルは、その形のまま開いて書き出せます。新しく角を丸める・落とす加工はできません。</p>
+    </details>
+    <details>
+      <summary>このアプリでできないことは？</summary>
+      <ul>
+        <li>回転体の作成、曲面への作図</li>
+        <li>加工のコピー、角を丸める・落とす加工</li>
+        <li>3MFやSTLを読み込んで編集すること</li>
+        <li>実際のプリンタや材料で印刷できるかの判定</li>
+      </ul>
+      <p>iPhoneの縦画面で使うアプリです。iPad・Mac向けには提供していません。</p>
+    </details>
+  </section>
 
-  <h2>不具合の報告・要望</h2>
-  <p>
-    次の3つを書いて送ってもらえると、こちらで同じ形を組み直せます。
-  </p>
-  <ul>
-    <li>iPhoneの機種とiOSのバージョン</li>
-    <li>どんな形を、どの順で作ったか（例: 120×80を25mm押し出して、上の面に112×72を21mm削った）</li>
-    <li>期待した結果と、実際に起きたこと</li>
-  </ul>
-  <p>
-    <!-- ▼ 公開するメールアドレスに差し替えてください ▼ -->
-    <a href="mailto:appcontact12y@gmail.com">appcontact12y@gmail.com</a>
-  </p>
+  <section id="ai" aria-labelledby="ai-title">
+    <h2 id="ai-title">AIとのやりとり</h2>
+    <details>
+      <summary>AIに形を相談するには？</summary>
+      <ol>
+        <li>右上のきらきらのボタンで「AIと形をやりとり」を開きます。</li>
+        <li>相談する内容を選んで文章をコピーし、お使いのチャットAIに貼り付けます。</li>
+        <li>AIから返ったJSONをコピーし、ミリキャドの「回答を貼り付け」で読み込みます。</li>
+        <li>形・外寸・部品数を確認して、「保存して開く」で別のモデルとして保存します。</li>
+      </ol>
+      <p>読み込めない場合は「理由をAIへ返す」で修正依頼をコピーし、AIに貼り付けてください。AIが作った形も、用途に合う寸法や構造か確認してから使ってください。</p>
+    </details>
+    <details>
+      <summary>モデルが自動でAIへ送られますか？</summary>
+      <p>自動送信はありません。現在のモデルを相談する文章には、モデル名・寸法・作成手順が含まれます。貼り付ける前に内容を確認し、外部に渡したくない情報が含まれていないか確かめてください。</p>
+      <p>貼り付け先での保存や学習への利用は、そのサービスの規約・設定に従います。詳しくは<a href="privacy.html#ai">AIとのやりとりに関するプライバシー</a>をご覧ください。</p>
+    </details>
+  </section>
 
-  <h2>プライバシー</h2>
-  <p>
-    情報は何も集めません。アプリ自身は通信もしません。詳しくは
-    <a href="privacy.html">プライバシーポリシー</a>をご覧ください。
-  </p>
+  <section id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">不具合の報告・ご要望</h2>
+    <p>下のメールアドレスへお送りください。不具合の場合は、次の情報があると原因を調べやすくなります。</p>
+    <ul>
+      <li>ミリキャドのバージョン、iPhoneの機種、iOSのバージョン</li>
+      <li>問題が起きるまでの操作</li>
+      <li>期待した結果と、実際の結果</li>
+      <li>表示されたメッセージやスクリーンショット（任意）</li>
+    </ul>
+    <p class="note">例：120×80mmの四角を25mm押し出し、上の面で112×72mmの四角を21mm削ると、○○と表示された。</p>
+    <p><a class="button" href="mailto:appcontact12y@gmail.com?subject=%E3%83%9F%E3%83%AA%E3%82%AD%E3%83%A3%E3%83%89%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">appcontact12y@gmail.com</a></p>
+    <p class="note">個人情報や機密情報は、必要な部分だけに絞ってお送りください。メールや添付ファイルの扱いは<a href="privacy.html#contact">プライバシーポリシー</a>に記載しています。</p>
+  </section>
 
-  <h2>同梱しているソフトウェア</h2>
-  <p>
-    立体の計算に Manifold（Apache-2.0）、Manifold-Swift（MIT）、oneTBB（Apache-2.0）、
-    Clipper2（Boost Software License 1.0）を使っています。ライセンス本文はアプリに
-    同梱していて、保存したモデルの一覧のいちばん下にある「ソフトウェア表記」から読めます。
-  </p>
+  <section aria-labelledby="privacy-title">
+    <h2 id="privacy-title">データの扱い</h2>
+    <p>モデルはアプリ内に保存され、開発者のサーバーへ自動送信されません。端末のバックアップ、ファイルの書き出し、AIへの貼り付け、お問い合わせについては、<a href="privacy.html">プライバシーポリシー</a>で説明しています。</p>
+  </section>
+
+  <section aria-labelledby="licenses-title">
+    <h2 id="licenses-title">利用しているソフトウェア</h2>
+    <p>立体の計算にManifold、Manifold-Swift、oneTBB、Clipper2を使用しています。ライセンス本文はアプリの「保存したモデル」一覧の下にある「ソフトウェア表記」で確認できます。</p>
+  </section>
 
   <footer>
-    <p><a href="./privacy.html">プライバシーポリシー</a></p>
-    <p>ミリキャド 1.2.0 ／ © 2026 syesyedo</p>
+    <nav aria-label="フッター"><a href="privacy.html">プライバシーポリシー</a><a href="#top">ページの先頭へ</a></nav>
+    <p>操作ガイド：1.2.1 ／ 更新：2026年10月14日<br>© 2026 syesyedo</p>
   </footer>
 </main>
 </body>
