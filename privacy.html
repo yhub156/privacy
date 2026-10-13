@@ -3,150 +3,140 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ミリキャドのモデル保存、バックアップ、ファイル書き出し、AIとのやりとり、問い合わせメールの情報の扱いについて。">
 <title>ミリキャド プライバシーポリシー</title>
 <style>
-  :root {
-    --paper: #f2efea;
-    --panel: #fffdf9;
-    --ink: #1c2a42;
-    --ink-soft: #5c6672;
-    --line: rgba(28, 42, 66, 0.12);
-    --accent: #1f6feb;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 0 20px 96px;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-    line-height: 1.85;
-    -webkit-text-size-adjust: 100%;
-  }
-  main { max-width: 44rem; margin: 0 auto; }
-  header { padding: 72px 0 32px; border-bottom: 1px solid var(--line); }
-  h1 { font-size: 1.75rem; margin: 0 0 8px; letter-spacing: 0.01em; }
-  .lede { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
-  h2 { font-size: 1.1rem; margin: 44px 0 10px; }
-  p, li { font-size: 1rem; }
-  ul { padding-left: 1.25em; }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 20px 22px;
-    margin: 28px 0 0;
-  }
-  .card p:first-child { margin-top: 0; }
-  .card p:last-child { margin-bottom: 0; }
-  .short { font-size: 1.05rem; font-weight: 600; }
-  /* リンクは指で押します。文字の高さのままだと、iPhoneでは狙いにくい。
-     広げるのは当たり判定だけ——inline-block と line-height で伸ばすと、
-     文の途中にあるリンク（サポートの「プライバシーポリシーをご覧ください」）
-     でその行だけ行送りが飛びます。インライン要素の上下パディングは
-     見た目の行送りを変えずに、押せる範囲だけを広げます。 */
-  a { color: var(--accent); padding: 12px 2px; }
-  footer {
-    margin-top: 64px; padding-top: 24px;
-    border-top: 1px solid var(--line);
-    color: var(--ink-soft); font-size: 0.85rem;
-  }
-  .en { color: var(--ink-soft); font-size: 0.9rem; }
+  :root { --paper:#f2efea; --panel:#fffdf9; --ink:#1c2a42; --muted:#526071; --line:#d6d9dd; --accent:#185fc8; }
+  * { box-sizing:border-box; }
+  html { scroll-padding-top:24px; }
+  body { margin:0; padding:0 20px 64px; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif; line-height:1.85; -webkit-text-size-adjust:100%; overflow-wrap:anywhere; }
+  main { max-width:46rem; margin:0 auto; }
+  header { padding:48px 0 24px; border-bottom:1px solid var(--line); }
+  .brand { margin:0 0 8px; font-size:.9rem; font-weight:700; }
+  h1 { margin:0 0 12px; font-size:clamp(1.6rem,5vw,2rem); line-height:1.5; }
+  h2 { margin:0 0 14px; font-size:1.25rem; line-height:1.6; }
+  h3 { margin:24px 0 8px; font-size:1rem; }
+  p { margin:12px 0; }
+  .lede,.meta { color:var(--muted); }
+  .meta { font-size:.85rem; }
+  .lede { margin:0; }
+  section { margin-top:40px; }
+  a { color:var(--accent); text-underline-offset:.2em; }
+  a:hover { text-decoration-thickness:2px; }
+  a:focus-visible,summary:focus-visible { outline:3px solid var(--accent); outline-offset:4px; border-radius:3px; }
+  nav { display:flex; flex-wrap:wrap; gap:4px 20px; margin-top:20px; }
+  nav a,.button { display:inline-flex; align-items:center; min-height:44px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .card > :first-child { margin-top:0; }
+  .card > :last-child { margin-bottom:0; }
+  .intro { margin-top:24px; }
+  ul,ol { padding-left:1.4em; }
+  li + li { margin-top:8px; }
+  .steps { list-style:none; counter-reset:step; padding:0; margin:0; }
+  .steps.card { padding:20px; }
+  .steps li { counter-increment:step; position:relative; padding-left:44px; margin:0 0 20px; }
+  .steps li:last-child { margin-bottom:0; }
+  .steps li::before { content:counter(step); position:absolute; left:0; top:2px; display:flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; }
+  .steps strong { display:block; }
+  details { border-top:1px solid var(--line); padding:4px 0; }
+  details:last-child { border-bottom:1px solid var(--line); }
+  summary { cursor:pointer; padding:14px 4px; font-weight:650; min-height:48px; }
+  details > :not(summary) { margin-left:4px; margin-right:4px; }
+  details > :last-child { margin-bottom:20px; }
+  .note { color:var(--muted); font-size:.95rem; }
+  .button { padding:10px 16px; border:1px solid var(--line); border-radius:10px; background:var(--panel); font-weight:650; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; }
+  footer nav { margin:0; }
+  @media (max-width:420px) { body { padding-left:16px; padding-right:16px; } header { padding-top:32px; } .card,.steps.card { padding:16px; } }
+  @media print { body { background:white; padding:0; } nav { display:none; } details { break-inside:avoid; } }
 </style>
 </head>
 <body>
-<main>
+<main id="top">
   <header>
+    <p class="brand">ミリキャド</p>
     <h1>プライバシーポリシー</h1>
-    <p class="lede">ミリキャド（PatternCAD）／ 最終更新 2026年10月7日</p>
+    <p class="lede">アプリ内のデータ、外部サービス、お問い合わせの情報をどう扱うかを説明します。</p>
+    <p class="meta">運営者：syesyedo ／ 対象：ミリキャド（PatternCAD）1.2.1<br>最終更新：2026年10月14日</p>
+    <nav aria-label="このページの目次">
+      <a href="#app">アプリ内の情報</a><a href="#backup">バックアップと削除</a><a href="#export">書き出し</a><a href="#ai">AIとのやりとり</a><a href="#contact">お問い合わせ</a><a href="#website">このWebサイト</a>
+    </nav>
   </header>
 
-  <div class="card">
-    <p class="short">このアプリは、あなたの情報を何ひとつ集めません。通信もしません。</p>
-    <p>作ったモデルは、あなたのiPhoneの中だけにあります。開発者を含め、誰も見られません。</p>
+  <div class="card intro" aria-label="データの扱いの要点">
+    <p><strong>作ったモデルは、アプリ内に保存します。</strong><br>ミリキャドが、モデルや操作履歴を開発者のサーバーへ自動送信することはありません。アカウント登録、広告、トラッキングの仕組みもありません。</p>
+    <p>ファイルの保存先やAIへの貼り付け先は、ご自身で選びます。メールでお問い合わせいただいた場合は、送られた情報を開発者が受け取ります。</p>
   </div>
 
-  <h2>集めない情報</h2>
-  <p>ミリキャドは、次のいずれも収集・送信・保存しません。</p>
-  <ul>
-    <li>氏名、メールアドレス、電話番号などの連絡先</li>
-    <li>アカウント情報（そもそもアカウント登録の仕組みがありません）</li>
-    <li>位置情報、連絡先、写真、カメラ、マイク</li>
-    <li>広告識別子（IDFA）や、それに類する識別子</li>
-    <li>利用状況の解析データ、クラッシュログ</li>
-  </ul>
+  <section id="app" aria-labelledby="app-title">
+    <h2 id="app-title">1. アプリ内で扱う情報</h2>
+    <p>ミリキャドは、作図と編集のために次の情報を端末内のアプリ専用領域に保存します。</p>
+    <ul>
+      <li>モデル名、形状、寸法、作成・編集の手順、作成日時・更新日時</li>
+      <li>モデル一覧に表示するプレビュー画像</li>
+      <li>描きかけの輪郭と押し出しの設定（再開のため）</li>
+      <li>最後に開いたモデルや、旧形式のデータを移行したかどうかの設定</li>
+    </ul>
+    <p>これらの情報は、モデルの保存・表示・編集・再開に使います。開発者のサーバーへ自動送信しません。開発者がアプリ内のモデルを遠隔で閲覧する機能もありません。</p>
+    <p>アプリ独自のアクセス解析やクラッシュ報告の送信機能、広告SDKは組み込んでいません。氏名・メールアドレスの入力や、位置情報・連絡先・写真・カメラ・マイクへのアクセスも求めません。</p>
+    <p class="note">iOSやApp Storeが提供する解析・診断情報は、端末の設定やAppleの仕組みに従って共有される場合があります。これはアプリ独自の送信機能とは別のものです。詳しくは<a href="https://support.apple.com/ja-jp/108971">Appleの解析・診断情報の案内</a>をご覧ください。</p>
+  </section>
 
-  <h2>端末の中に保存するもの</h2>
-  <p>次のデータは、アプリのサンドボックス内にだけ保存されます。外へは出ません。</p>
-  <ul>
-    <li>あなたが作ったモデル（形状の履歴と寸法を記録したJSONファイル）</li>
-    <li>保存したモデルの完成形の小さな画像（一覧に表示するため）</li>
-    <li>押し出す前の描きかけの輪郭と押し出しの設定（次に開いたとき続きから始めるため）</li>
-    <li>最後に開いたモデルの識別子（次に開いたとき同じモデルを出すため）</li>
-    <li>モデル一覧に日付を表示するために読む、ファイルの更新日時</li>
-  </ul>
-  <p>
-    1.1.0までの版は、AIに相談したときの元のモデルの控えと、縦横比を固定するかどうかの設定も
-    保存していました。1.2.0では使わないので、更新後に最初に開いたときに消します。
-  </p>
-  <p>アプリを削除すると、これらは端末から消えます。バックアップを取っていない限り、元には戻せません。</p>
+  <section id="backup" aria-labelledby="backup-title">
+    <h2 id="backup-title">2. バックアップと削除</h2>
+    <p>ミリキャド独自のクラウド同期はありません。ただし、端末の設定によって、アプリのデータがiCloudやコンピュータのバックアップに含まれる場合があります。バックアップの管理と削除は、Appleの設定やご利用のバックアップ方法に従います。<a href="https://support.apple.com/ja-jp/108770">iCloudバックアップの対象となるもの</a>もご確認ください。</p>
+    <p>保存したモデルはアプリ内の一覧から削除できます。アプリ自体を削除すると、端末内のアプリデータも削除されます。書き出したファイル、外部サービスに渡した情報、既存のバックアップ内のデータは、アプリの削除では消えません。それぞれの保存先で管理してください。</p>
+    <p class="note">3MFへの書き出しは印刷用の形状の保存です。アプリの編集履歴を復元するためのバックアップではありません。</p>
+  </section>
 
-  <h2>通信</h2>
-  <p>
-    ミリキャドはインターネットに接続しません。サーバーも、クラウド同期も、
-    外部SDKもありません。機内モードのままでも、すべての機能が動きます。
-  </p>
+  <section id="export" aria-labelledby="export-title">
+    <h2 id="export-title">3. ファイルの書き出し</h2>
+    <p>書き出す3MFには、モデルの形状・単位・モデル名が含まれます。「ファイルに保存」で保存先をご自身で選びます。</p>
+    <p>iCloud Driveなどのクラウド上の保存先を選ぶと、そのサービスへファイルが保存されます。ファイルを別のアプリで開く場合も、保存先や利用先の規約・プライバシーポリシーが適用されます。</p>
+  </section>
 
-  <h2>書き出したファイル</h2>
-  <p>
-    3MFを書き出すと、保存先を選ぶ画面が開きます。どこへ保存するか、保存したファイルを
-    どのアプリで開くかは、あなたの操作です。保存した先のサービス（iCloud Driveなど）や
-    開いたアプリの扱いについては、それぞれのプライバシーポリシーが適用されます。
-  </p>
+  <section id="ai" aria-labelledby="ai-title">
+    <h2 id="ai-title">4. AIとのやりとりとクリップボード</h2>
+    <p>「AIと形をやりとり」は、文章をコピーして外部のAIに貼り付け、回答をアプリへ戻す機能です。ミリキャドがAIサービスに直接接続したり、自動で送信したりすることはありません。</p>
+    <ul>
+      <li>現在のモデルを相談する文章には、モデル名・寸法・形状・作成手順が含まれます。</li>
+      <li>コピー操作をすると、文章をiOSのクリップボードに書き込みます。</li>
+      <li>「回答を貼り付け」の操作で受け取った文章を、端末内で読み込んで形状を確認します。「保存して開く」などの保存操作を行うと、モデルとしてアプリ内に保存します。</li>
+    </ul>
+    <p>クリップボードの共有はiOSの設定や機能に従います。外部のAIに貼り付けた内容の保存・学習への利用・削除は、そのサービスの規約や設定に従います。貼り付ける前に、個人情報や機密情報が含まれていないか確認してください。</p>
+  </section>
 
-  <h2>AIへの相談</h2>
-  <p>
-    「AIと形をやりとり」では、モデルの形（寸法と作った手順）と名前を含む文章を用意します。
-    その文章をコピーして、どのアプリへ貼り付けるかは、あなたの操作です。
-    ミリキャド自身がAIやサーバーへ送ることはありません。渡した先のアプリやサービスでの扱いについては、
-    そのプライバシーポリシーが適用されます。
-  </p>
+  <section id="contact" aria-labelledby="contact-title">
+    <h2 id="contact-title">5. お問い合わせで受け取る情報</h2>
+    <p>メールでお問い合わせいただくと、送信元のメールアドレス、本文、任意の添付ファイルを開発者が受け取ります。お問い合わせへの返信、不具合の調査、改善のために必要な範囲で使用します。</p>
+    <p>必要な情報に絞ってお送りください。氏名、住所、機密のモデルなどは、対応に必要でない限り送る必要はありません。</p>
+    <p>お問い合わせの情報は、返信や不具合の調査に必要な期間に限って保管し、不要になった情報は削除します。保管している情報の確認・訂正・削除をご希望の場合は、下記の窓口へご連絡ください。ご本人からの依頼であることを確認したうえで対応します。</p>
+    <p>メールの送受信・保管にはGmailを利用します。メールサービスにおける情報の扱いは、<a href="https://policies.google.com/privacy?hl=ja">Googleのプライバシーポリシー</a>に従います。</p>
+  </section>
 
-  <h2>トラッキング</h2>
-  <p>
-    アプリ間トラッキングは行いません。したがって、トラッキングの許可を求めるダイアログも出ません。
-  </p>
+  <section id="sharing" aria-labelledby="sharing-title">
+    <h2 id="sharing-title">6. 情報の提供と管理</h2>
+    <p>ミリキャドは、広告目的のトラッキングを行いません。お問い合わせで受け取った情報を販売したり、広告に利用したりすることもありません。</p>
+    <p>お問い合わせの情報は、メールサービスの利用に伴う処理を除き、ご本人の同意なく第三者に提供しません。ただし、法令に基づく開示が必要な場合を除きます。</p>
+    <p>お問い合わせの情報は、対応に必要な範囲で取り扱います。端末のモデルや、ご自身で書き出したファイル・AIに渡した情報は、それぞれの端末やサービスで管理してください。</p>
+  </section>
 
-  <h2>第三者への提供</h2>
-  <p>集めていないので、提供するものがありません。</p>
+  <section id="website" aria-labelledby="website-title">
+    <h2 id="website-title">7. このWebサイトについて</h2>
+    <p>サポートページとこのページは、GitHub Pagesで公開しています。これらのページに、開発者独自のアクセス解析ツール、広告、Cookieを使う仕組みは設置していません。</p>
+    <p>GitHubは、GitHub Pagesへのアクセス時に、セキュリティ目的でIPアドレスを記録・保存します。詳しくは<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">GitHub Pagesのデータ収集の説明</a>と<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHubのプライバシーポリシー</a>をご覧ください。</p>
+  </section>
 
-  <h2>子どもの利用</h2>
-  <p>
-    年齢を問わず安全に使えます。個人情報を集めないため、13歳未満の子どもから
-    情報を収集することもありません。
-  </p>
-
-  <h2>ポリシーの変更</h2>
-  <p>
-    内容を変更した場合は、このページを更新し、上部の最終更新日を書き換えます。
-    収集するデータが増えることになった場合は、アプリの更新より前にここへ書きます。
-  </p>
-
-  <h2>お問い合わせ</h2>
-  <p>
-    <!-- ▼ 公開するメールアドレスに差し替えてください ▼ -->
-    <a href="mailto:appcontact12y@gmail.com">appcontact12y@gmail.com</a>
-  </p>
+  <section id="changes" aria-labelledby="changes-title">
+    <h2 id="changes-title">8. ポリシーの変更・お問い合わせ窓口</h2>
+    <p>データの扱いやこのポリシーを変更する場合は、このページと最終更新日を更新します。アプリのデータの扱いに重要な変更がある場合は、アプリの更新案内などでもお知らせします。</p>
+    <p>運営者：syesyedo</p>
+    <p><a class="button" href="mailto:appcontact12y@gmail.com">appcontact12y@gmail.com</a></p>
+  </section>
 
   <footer>
-    <p class="en">
-      <strong>English summary.</strong> MilliCAD (PatternCAD) collects nothing.
-      It has no accounts, no network access, no analytics and no tracking.
-      Everything you make stays in the app's sandbox on your own device.
-      When you consult an AI, you copy and paste the text yourself; the app sends nothing.
-      Contact: appcontact12y@gmail.com
-    </p>
-    <p><a href="./support.html">サポートページへ</a></p>
+    <nav aria-label="フッター"><a href="support.html">サポート</a><a href="#top">ページの先頭へ</a></nav>
+    <p lang="en">MilliCAD stores models on your device and does not automatically send them to the developer. Device backups and services you choose may handle copies. If you contact us by email, we receive your email address, message and attachments to respond and investigate issues.</p>
     <p>© 2026 syesyedo</p>
   </footer>
 </main>
